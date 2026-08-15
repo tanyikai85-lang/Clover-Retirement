@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yikai &amp; Janice — Household Retirement &amp; Passive Income Plan</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page-plane:     #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --good:           #006300;
+    --good-status:    #0ca30c;
+    --critical:       #d03b3b;
+    --warning:        #fab219;
+    --series-1:       #2a78d6;
+    --series-2:       #eb6834;
+    --series-3:       #1baf7a;
+    --series-4:       #eda100;
+    --series-5:       #4a3aa7;
+    --card-bg:        #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page-plane:     #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --gridline:       #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --good:           #0ca30c;
+      --good-status:    #0ca30c;
+      --critical:       #e66767;
+      --warning:        #fab219;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --series-4:       #c98500;
+      --series-5:       #9085e9;
+      --card-bg:        #222220;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page-plane:     #0d0d0d;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --gridline:       #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --good:           #0ca30c;
+    --good-status:    #0ca30c;
+    --critical:       #e66767;
+    --warning:        #fab219;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --series-4:       #c98500;
+    --series-5:       #9085e9;
+    --card-bg:        #222220;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
+
+  header.top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom: 20px; flex-wrap: wrap; }
+  header.top h1 { font-size: 22px; margin: 0 0 4px; }
+  header.top p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+  .theme-toggle {
+    border: 1px solid var(--border); background: var(--card-bg); color: var(--text-primary);
+    border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .card h2 { font-size: 16px; margin: 0 0 4px; }
+  .card > .sub { color: var(--text-secondary); font-size: 13px; margin: 0 0 14px; }
+
+  .grid { display: grid; gap: 14px; }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 860px) {
+    .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+  }
+
+  label.field { display: block; font-size: 12.5px; color: var(--text-secondary); margin-bottom: 4px; }
+  .field-wrap { margin-bottom: 4px; }
+  input[type="number"], input[type="text"], select {
+    width: 100%; padding: 7px 9px; border-radius: 7px; border: 1px solid var(--border);
+    background: var(--surface-1); color: var(--text-primary); font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  input[type="range"] { width: 100%; }
+  input[type="checkbox"] { transform: scale(1.15); margin-right: 6px; }
+
+  .stat-tiles { display:grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  @media (max-width: 860px){ .stat-tiles{ grid-template-columns: repeat(2,1fr);} }
+  .tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .tile .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+  .tile .value { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tile .delta { font-size: 12.5px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .delta.good { color: var(--good); }
+  .delta.bad { color: var(--critical); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--gridline); font-variant-numeric: tabular-nums; }
+  th { color: var(--text-secondary); font-weight: 600; font-size: 12.5px; }
+  td.num, th.num { text-align: right; }
+  td input[type="number"] { padding: 5px 6px; font-size: 13px; }
+  tr.total td { border-top: 1px solid var(--baseline); font-weight: 600; }
+  .tag { display:inline-block; font-size: 11px; padding: 2px 7px; border-radius: 999px; background: var(--surface-1); color: var(--text-secondary); border:1px solid var(--border); }
+
+  .chart-box { position: relative; height: 300px; }
+  .chart-box svg { width: 100%; height: 100%; overflow: visible; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .chart-tooltip {
+    position: absolute; pointer-events: none; background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 10px; font-size: 12.5px; color: var(--text-primary);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15); white-space: nowrap; z-index: 5; display: none;
+  }
+  .chart-tooltip .tt-row { display:flex; align-items:center; gap:6px; }
+  .chart-tooltip .tt-swatch { width:8px; height:8px; border-radius: 2px; display:inline-block; }
+  .chart-legend { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; font-size:12.5px; color: var(--text-secondary); }
+  .chart-legend .item { display:flex; align-items:center; gap:6px; }
+  .chart-legend .sw { width:10px; height:10px; border-radius:2px; display:inline-block; }
+  .legend-row { display:flex; gap:16px; flex-wrap:wrap; margin-top: 10px; font-size: 12.5px; color: var(--text-secondary); }
+  .legend-item { display:flex; align-items:center; gap:6px; }
+  .swatch { width:10px; height:10px; border-radius: 2px; display:inline-block; }
+
+  details.notes summary { cursor: pointer; font-weight: 600; font-size: 14px; padding: 4px 0; }
+  details.notes p, details.notes li { color: var(--text-secondary); font-size: 13.5px; }
+  .warn-box {
+    border: 1px solid var(--warning); background: color-mix(in srgb, var(--warning) 12%, var(--surface-1));
+    border-radius: 8px; padding: 10px 12px; font-size: 13px; color: var(--text-primary); margin-top: 10px;
+  }
+  .scenario-note { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; }
+  .tabs { display:flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tab-btn {
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-secondary);
+    padding: 6px 14px; border-radius: 999px; font-size: 13px; cursor: pointer;
+  }
+  .tab-btn.active { background: var(--series-1); color: #fff; border-color: var(--series-1); }
+  .hint { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+  .two-col-input { display:flex; gap:10px; align-items:flex-end; }
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Household Retirement &amp; Passive Income Plan</h1>
+      <p>Yikai &amp; Janice — editable model, live in your browser. Every number below recalculates as you change an input. Nothing is sent anywhere; this file is self-contained.</p>
+    </div>
+    <button class="theme-toggle" id="themeToggle">Toggle dark mode</button>
+  </header>
+
+  <div class="card">
+    <h2>Core assumptions</h2>
+    <p class="sub">These drive every calculation on the page. Defaults are carried over from the original planner spreadsheet (Aug 2026).</p>
+    <div class="grid cols-4" id="assumptionsGrid"></div>
+  </div>
+
+  <div class="card">
+    <h2>Household net worth build-up (accumulation phase)</h2>
+    <p class="sub">Total household net worth by age, from today to just past your chosen retirement age — portfolio, CPF, leveraged-account equity and property equity combined (excludes the company payout, which isn't received until retirement).</p>
+    <div class="chart-box" id="accumChart"></div>
+  </div>
+
+  <div class="card">
+    <h2>Investment portfolio &amp; CPF accounts</h2>
+    <p class="sub">Edit any current value, monthly contribution, or growth rate — every projection on this page updates immediately. "Stops after (yrs)" leaves blank/high for contributions that run indefinitely.</p>
+    <div class="tabs">
+      <button class="tab-btn active" data-acct-tab="portfolio">Investment portfolio</button>
+      <button class="tab-btn" data-acct-tab="cpf">CPF accounts</button>
+      <button class="tab-btn" data-acct-tab="leveraged">Leveraged accounts</button>
+    </div>
+    <div id="acctTable-portfolio"></div>
+    <div id="acctTable-cpf" style="display:none"></div>
+    <div id="acctTable-leveraged" style="display:none"></div>
+  </div>
+
+  <div class="card">
+    <h2>Property — The Line @ Tanjong Rhu</h2>
+    <div class="grid cols-4" id="propertyGrid"></div>
+    <div class="chart-box" style="margin-top:14px;" id="mortgageChart"></div>
+    <p class="scenario-note">Mortgage balance and property value at your chosen retirement age: <b><span id="propSummary"></span></b></p>
+  </div>
+
+  <div class="card">
+    <h2>Scenario E — Sell The Line at retirement, buy a house mortgage-free</h2>
+    <p class="sub">New scenario: at retirement age, sell the property at market value, clear the outstanding mortgage and selling costs out of the proceeds, buy your next home outright (no mortgage), and invest whatever's left over. You give up the rental income and the mortgage payment both disappear.</p>
+    <div class="grid cols-4" id="scenarioEGrid"></div>
+    <div id="scenarioEWarn"></div>
+    <table style="margin-top:14px;">
+      <tbody id="scenarioEBreakdown"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Scenario comparison at retirement</h2>
+    <p class="sub">Net household passive income per year vs. your S$<span id="targetSpendEcho"></span> target, at your chosen retirement age. Scenarios C and D are contingent on the inheritance and only apply from age 55 onward — shown separately since they're not on the same timeline as A/B/E.</p>
+    <div class="chart-box" id="scenarioChart"></div>
+    <table style="margin-top:16px;">
+      <thead>
+        <tr><th>Scenario</th><th class="num">Net annual passive income</th><th class="num">Surplus / (Shortfall)</th></tr>
+      </thead>
+      <tbody id="scenarioTable"></tbody>
+    </table>
+    <p class="hint">C and D add to Scenario B's income only from age 55, when the contingent inheritance would be received — toggle it off in Core Assumptions to see the plan without relying on it.</p>
+  </div>
+
+  <div class="card">
+    <h2>Net worth at retirement — by scenario</h2>
+    <div class="stat-tiles" id="netWorthTiles"></div>
+  </div>
+
+  <div class="card">
+    <h2>Legacy projection — to age 85</h2>
+    <p class="sub">What total household estate looks like over time, in today's dollars, if surplus passive income is reinvested and CPF LIFE flows from 65. Choose which property scenario to project, and whether to include the contingent inheritance. Property is shown at full unencumbered value once the mortgage is cleared (B) or replaced by the new mortgage-free home (E) — so totals here run a bit higher than the original spreadsheet's Legacy tab, which kept property at its pre-payoff equity figure instead of updating it after the mortgage payoff.</p>
+    <div class="grid cols-3" style="margin-bottom:14px;">
+      <div>
+        <label class="field">Base property scenario</label>
+        <select id="legacyBaseScenario">
+          <option value="B">B — pay off mortgage, keep &amp; rent property</option>
+          <option value="E">E — sell property, buy mortgage-free</option>
+        </select>
+      </div>
+      <div>
+        <label class="field">Value basis</label>
+        <select id="legacyValueBasis">
+          <option value="real">Real (today's dollars)</option>
+          <option value="nominal">Nominal</option>
+        </select>
+      </div>
+      <div style="align-self:end;">
+        <label class="field" style="margin-bottom:8px;"><input type="checkbox" id="legacyShowInheritance" checked> Show contingent-inheritance track</label>
+      </div>
+    </div>
+    <div class="chart-box" id="legacyChart"></div>
+    <table style="margin-top:16px;">
+      <thead>
+        <tr><th>Age</th><th class="num">No inheritance</th><th class="num">With inheritance</th></tr>
+      </thead>
+      <tbody id="legacyTable"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Compare two retirement ages</h2>
+    <div class="grid cols-2">
+      <div><label class="field">Age A</label><input type="number" id="compareAgeA" value="50"></div>
+      <div><label class="field">Age B</label><input type="number" id="compareAgeB" value="52"></div>
+    </div>
+    <table style="margin-top:12px;">
+      <thead><tr><th>Metric</th><th class="num" id="compareHeadA">Age 50</th><th class="num" id="compareHeadB">Age 52</th></tr></thead>
+      <tbody id="compareTable"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <details class="notes" open>
+      <summary>Key watch-outs (carried over from the original planner)</summary>
+      <ul>
+        <li>Spouse's CPF balances are estimated as identical to Yikai's — replace with actual figures for accuracy.</li>
+        <li>Pruwealth 3's leverage amount was not disclosed, so it's modelled at gross (not net) value.</li>
+        <li>The 15-year CPF gap: OA/SA are largely locked from retirement until CPF LIFE starts at 65 for both of you — don't count on CPF for early-retirement cash flow.</li>
+        <li>Endowus SRS incurs full tax plus a 5% penalty if withdrawn before the statutory retirement age — treated as a later-phase asset throughout.</li>
+        <li>The S$5m inheritance is contingent — timing, value and occurrence are all uncertain. Scenario B (or E) is the plan to actually rely on; C/D show the upside.</li>
+        <li>Scenario E's numbers are sensitive to two inputs you should set carefully: your real assumed sale price for The Line, and the price of the mortgage-free home you'd buy — both are editable above.</li>
+        <li>Mortgage rate is assumed fixed at 2% for the full term — real repricing risk exists; check against your actual bank package.</li>
+        <li>All growth rates, the SWR, and property/mortgage assumptions are editable — stress-test with lower rates before relying on this plan.</li>
+        <li>This page recalculates everything from the underlying formulas (monthly-compounding growth, amortization schedules) rather than copying static numbers, so figures land very close to — but not always cent-exact with — the original spreadsheet. Differences are typically under 0.2%.</li>
+      </ul>
+    </details>
+  </div>
+
+  <p class="hint" style="text-align:center;">Not financial advice. Model for planning discussion only — confirm anything actionable with a licensed advisor.</p>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------- State ----------
+  const state = {
+    currentAge: 41,
+    currentYear: 2026,
+    retirementAge: 50,
+    targetSpend: 100000,
+    inflation: 0.03,
+    companyPayout: 850000,
+    swr: 0.04,
+    legacyGrowth: 0.05,
+    statutoryAge: 64,
+    cpfLifeAge: 65,
+    ersToday: 440800,
+    ersGrowth: 0.035,
+    cpfLifePayoutPerPerson: 3440,
+    cpfRaGrowth: 0.04,
+    includeInheritance: true,
+    inheritanceAge: 55,
+    inheritanceValueToday: 5000000,
+    inheritanceAppreciation: 0.01,
+    inheritanceYield: 0.025,
+    inheritanceDownsizeFraction: 0.3333,
+    inheritanceInvestReturn: 0.04,
+    mortgagePrincipal: 3000000,
+    mortgageRate: 0.02,
+    mortgageTermYears: 24,
+    propertyValueToday: 4200000,
+    propertyAppreciation: 0.0,
+    rentalIncomeMonthly: 8500,
+    saleSellingCostPct: 0.03,
+    saleMarketValueOverride: null,
+    newHousePrice: 2200000
+  };
+
+  const portfolioAccounts = [
+    { name: "Pruvantage Wealth (ILP)", pv: 135000, pmt: 3500, rate: 0.02, stopYears: 99, note: "" },
+    { name: "Pruwealth 3 (leveraged lump sum ILP)", pv: 400000, pmt: 0, rate: 0.02, stopYears: 0, note: "leverage amount undisclosed" },
+    { name: "Prusave (paid-up)", pv: 36000, pmt: 0, rate: 0.02, stopYears: 0, note: "" },
+    { name: "Prucash", pv: 24000, pmt: 169, rate: 0.02, stopYears: 6, note: "" },
+    { name: "Endowus SRS portfolio", pv: 100000, pmt: 1250, rate: 0.05, stopYears: 99, note: "SRS-locked", srsLocked: true },
+    { name: "Tokio Marine Atlas (ILP)", pv: 67000, pmt: 1000, rate: 0.05, stopYears: 99, note: "" },
+    { name: "HSBC Wealth Accelerate", pv: 180000, pmt: 2000, rate: 0.05, stopYears: 99, note: "" },
+    { name: "Janice — HSBC Life Wealth Accelerate", pv: 22800, pmt: 600, rate: 0.05, stopYears: 99, note: "" },
+    { name: "Janice — Singlife Savvy Invest II", pv: 38000, pmt: 1000, rate: 0.05, stopYears: 99, note: "" }
+  ];
+  const endowments = [
+    { name: "Janice — PruSave 6th Series (endowment, guaranteed maturity)", maturityValue: 20000, maturityYear: 2035 },
+    { name: "Janice — PruFlexiCash 6th Series (endowment, guaranteed maturity)", maturityValue: 24000, maturityYear: 2035 }
+  ];
+  const cpfAccounts = [
+    { name: "Your OA", pv: 20000, pmt: 0, rate: 0.025, excluded: false },
+    { name: "Your SA", pv: 260000, pmt: 560, rate: 0.04, excluded: false },
+    { name: "Your MediSave", pv: 75000, pmt: 700, rate: 0.04, excluded: true },
+    { name: "Spouse's OA", pv: 20000, pmt: 0, rate: 0.025, excluded: false },
+    { name: "Spouse's SA", pv: 260000, pmt: 560, rate: 0.04, excluded: false },
+    { name: "Spouse's MediSave", pv: 75000, pmt: 700, rate: 0.04, excluded: true }
+  ];
+  const leveraged = {
+    scb: { name: "Standard Chartered Investments", assetValue: 800000, loan: 630000, monthlyIncome: 4200, rate: 0.0228571429, assetGrowth: 0.0 },
+    ocbc: { name: "OCBC Premier Wealth Generation", assetValue: 350000, loan: 220000, monthlyIncome: 1000, rate: 0.0163636364, assetGrowth: 0.0 }
+  };
+
+  // ---------- Math helpers ----------
+  function fvMonthly(pv, pmt, annualRate, months, stopMonths) {
+    months = Math.max(0, months);
+    const r = annualRate / 12;
+    const contribMonths = Math.min(months, stopMonths);
+    let v1;
+    if (r === 0) v1 = pv + pmt * contribMonths;
+    else { const g = Math.pow(1 + r, contribMonths); v1 = pv * g + pmt * ((g - 1) / r); }
+    const remaining = months - contribMonths;
+    if (remaining <= 0) return v1;
+    return r === 0 ? v1 : v1 * Math.pow(1 + r, remaining);
+  }
+  function monthsBetween(fromAge, toAge) { return Math.round((toAge - fromAge) * 12); }
+
+  function loanBalance(principal, annualRate, payment, months) {
+    if (principal <= 0) return 0;
+    const r = annualRate / 12;
+    months = Math.max(0, months);
+    if (r === 0) return Math.max(0, principal - payment * months);
+    const g = Math.pow(1 + r, months);
+    const bal = principal * g - payment * ((g - 1) / r);
+    return Math.max(0, bal);
+  }
+  function amortizingPayment(principal, annualRate, termYears) {
+    const r = annualRate / 12, n = termYears * 12;
+    if (r === 0) return principal / n;
+    return principal * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // ---------- Derived value functions ----------
+  function accountValueAtAge(acct, age) {
+    const stopYears = (acct.stopYears == null) ? 9999 : acct.stopYears;
+    return fvMonthly(acct.pv, acct.pmt, acct.rate, monthsBetween(state.currentAge, age), stopYears * 12);
+  }
+  function endowmentValueAtAge(e, age) {
+    const maturityAge = state.currentAge + (e.maturityYear - state.currentYear);
+    return age >= maturityAge ? e.maturityValue : 0;
+  }
+  function portfolioTotalAtAge(age) {
+    let total = 0;
+    portfolioAccounts.forEach(a => total += accountValueAtAge(a, age));
+    endowments.forEach(e => total += endowmentValueAtAge(e, age));
+    return total;
+  }
+  function srsAtAge(age) {
+    const a = portfolioAccounts.find(x => x.srsLocked);
+    return a ? accountValueAtAge(a, age) : 0;
+  }
+  function cpfSumAtAge(age, excluded) {
+    let total = 0;
+    cpfAccounts.forEach(a => { if (!!a.excluded === !!excluded) total += accountValueAtAge(a, age); });
+    return total;
+  }
+  function mortgagePayment() { return amortizingPayment(state.mortgagePrincipal, state.mortgageRate, state.mortgageTermYears); }
+  function mortgageBalanceAtAge(age) {
+    return loanBalance(state.mortgagePrincipal, state.mortgageRate, mortgagePayment(), monthsBetween(state.currentAge, age));
+  }
+  function propertyValueAtAge(age) {
+    return state.propertyValueToday * Math.pow(1 + state.propertyAppreciation, age - state.currentAge);
+  }
+  function propertyEquityAtAge(age) { return propertyValueAtAge(age) - mortgageBalanceAtAge(age); }
+
+  function scbLoanBalanceAtAge(age) {
+    return loanBalance(leveraged.scb.loan, leveraged.scb.rate, leveraged.scb.monthlyIncome, monthsBetween(state.currentAge, age));
+  }
+  function scbAssetAtAge(age) { return leveraged.scb.assetValue * Math.pow(1 + leveraged.scb.assetGrowth, age - state.currentAge); }
+  function scbEquityAtAge(age) { return scbAssetAtAge(age) - scbLoanBalanceAtAge(age); }
+  function scbFreeIncomeAtAge(age) { return scbLoanBalanceAtAge(age) <= 0 ? leveraged.scb.monthlyIncome * 12 : 0; }
+
+  function ocbcAssetAtAge(age) { return leveraged.ocbc.assetValue * Math.pow(1 + leveraged.ocbc.assetGrowth, age - state.currentAge); }
+  function ocbcEquityAtAge(age) { return ocbcAssetAtAge(age) - leveraged.ocbc.loan; }
+  function ocbcIncomeAnnual() { return (leveraged.ocbc.monthlyIncome - leveraged.ocbc.loan * leveraged.ocbc.rate / 12) * 12; }
+
+  function ersAt55() { return state.ersToday * Math.pow(1 + state.ersGrowth, 55 - state.currentAge); }
+  function saAt55(which) {
+    const a = cpfAccounts.find(x => x.name === (which === "you" ? "Your SA" : "Spouse's SA"));
+    return fvMonthly(a.pv, a.pmt, a.rate, monthsBetween(state.currentAge, 55), 9999);
+  }
+  function householdErsTopup() {
+    const ers = ersAt55();
+    return Math.max(0, ers - saAt55("you")) + Math.max(0, ers - saAt55("spouse"));
+  }
+  function cpfLifeHouseholdAnnual() { return state.cpfLifePayoutPerPerson * 12 * 2; }
+  function cpfLifePremiumBase() {
+    const perPerson = ersAt55() * Math.pow(1 + state.cpfRaGrowth, 65 - 55);
+    return perPerson * 2;
+  }
+
+  function liquidPoolAtAge(age) {
+    return (portfolioTotalAtAge(age) - srsAtAge(age)) + scbEquityAtAge(age) + state.companyPayout;
+  }
+
+  function inheritanceValueAt55() {
+    return state.inheritanceValueToday * Math.pow(1 + state.inheritanceAppreciation, 55 - state.currentAge);
+  }
+
+  // ---------- Scenario calculations at a given retirement age ----------
+  function scenarios(R) {
+    const rentalAnnual = state.rentalIncomeMonthly * 12;
+    const mortgageAnnualPayment = mortgagePayment() * 12;
+    const mortgageBalR = mortgageBalanceAtAge(R);
+    const propValR = propertyValueAtAge(R);
+    const pool = liquidPoolAtAge(R);
+    const ocbcInc = ocbcIncomeAnnual();
+
+    // Scenario A: keep property as-is
+    const stillOwedPayment = mortgageBalR > 0 ? mortgageAnnualPayment : 0;
+    const netCashFlowProperty = rentalAnnual - stillOwedPayment;
+    const A = pool * state.swr + ocbcInc + netCashFlowProperty;
+
+    // Scenario B: pay off mortgage from pool
+    const remainingPoolB = pool - mortgageBalR;
+    const B = remainingPoolB * state.swr + ocbcInc + rentalAnnual;
+
+    // Inheritance overlays (from age 55)
+    const inhVal55 = inheritanceValueAt55();
+    const inhRentalIncome = inhVal55 * state.inheritanceYield;
+    const inhNewHouse = inhVal55 * state.inheritanceDownsizeFraction;
+    const inhInvested = inhVal55 * (1 - state.inheritanceDownsizeFraction);
+    const inhFundIncome = inhInvested * state.inheritanceInvestReturn;
+    const C = B + inhRentalIncome;
+    const D = B + inhFundIncome;
+
+    // Scenario E: sell property, buy mortgage-free house
+    const saleValue = state.saleMarketValueOverride != null ? state.saleMarketValueOverride : propValR;
+    const sellingCosts = saleValue * state.saleSellingCostPct;
+    const netProceeds = saleValue - mortgageBalR - sellingCosts;
+    const remainderAfterHouse = Math.max(0, netProceeds - state.newHousePrice);
+    const shortfall = Math.max(0, state.newHousePrice - netProceeds);
+    const invIncomeFromRemainder = remainderAfterHouse * state.swr;
+    const E = pool * state.swr + ocbcInc + invIncomeFromRemainder;
+
+    return {
+      R, pool, mortgageBalR, propValR, rentalAnnual, ocbcInc,
+      A, B, C, D, E,
+      inhVal55, inhRentalIncome, inhNewHouse, inhInvested, inhFundIncome,
+      saleValue, sellingCosts, netProceeds, remainderAfterHouse, shortfall, invIncomeFromRemainder
+    };
+  }
+
+  function netWorthAtRetirement(R, which) {
+    const s = scenarios(R);
+    const srsR = srsAtAge(R);
+    const ocbcEq = ocbcEquityAtAge(R);
+    const cpfLocked = cpfSumAtAge(R, false);
+    const cpfMedi = cpfSumAtAge(R, true);
+    const base = s.pool + srsR + ocbcEq + cpfLocked + cpfMedi;
+    if (which === "E") return base + s.netProceeds;
+    return base + propertyEquityAtAge(R); // A and B share the same total net worth (cash-flow choice only)
+  }
+
+  // ---------- Legacy projection ----------
+  function legacyProjection(baseScenario, includeInheritance) {
+    const R = state.retirementAge;
+    const s = scenarios(R);
+    const rentalAnnual = s.rentalAnnual;
+    const ocbcInc = s.ocbcInc;
+    const premiumBase = cpfLifePremiumBase();
+    const householdTopup = householdErsTopup();
+    const cpfLifeAnnual0 = cpfLifeHouseholdAnnual();
+
+    let D0, F0Fn;
+    if (baseScenario === "E") {
+      D0 = s.pool + s.remainderAfterHouse;
+      F0Fn = (age) => state.newHousePrice * Math.pow(1 + state.propertyAppreciation, age - R);
+    } else {
+      D0 = s.pool - s.mortgageBalR;
+      F0Fn = (age) => propertyValueAtAge(age); // mortgage-free, full value
+    }
+
+    function payoutAtAge(age) {
+      if (age < state.cpfLifeAge) return 0;
+      return cpfLifeAnnual0 * Math.pow(1 + state.inflation, age - state.cpfLifeAge);
+    }
+    function incomeAtAge(age) {
+      const rent = baseScenario === "E" ? 0 : rentalAnnual;
+      return ocbcInc + rent + payoutAtAge(age);
+    }
+    function spendAtAge(age) { return state.targetSpend * Math.pow(1 + state.inflation, age - R); }
+
+    const rows = [];
+    let D = D0;
+    let cumulativePayout = 0;
+    let inhFund = 0, inhHouse = 0;
+
+    for (let age = R; age <= 85; age++) {
+      if (age > R) {
+        D = D * (1 + state.legacyGrowth) + (incomeAtAge(age) - spendAtAge(age));
+        if (age === 55) D -= householdTopup;
+      }
+      let bequest = 0;
+      if (age >= state.cpfLifeAge) {
+        bequest = Math.max(0, premiumBase - cumulativePayout);
+        cumulativePayout += payoutAtAge(age);
+      }
+      const F = F0Fn(age);
+      const nominalNoInh = D + bequest + F;
+      const realNoInh = nominalNoInh / Math.pow(1 + state.inflation, age - state.currentAge);
+
+      if (includeInheritance && age >= 55) {
+        if (age === 55) {
+          inhFund = inheritanceValueAt55() * (1 - state.inheritanceDownsizeFraction);
+          inhHouse = inheritanceValueAt55() * state.inheritanceDownsizeFraction;
+        } else {
+          inhFund = inhFund * (1 + state.inheritanceInvestReturn);
+          inhHouse = inhHouse * Math.pow(1 + state.propertyAppreciation, 1);
+        }
+      }
+      const nominalWithInh = nominalNoInh + inhFund + inhHouse;
+      const realWithInh = nominalWithInh / Math.pow(1 + state.inflation, age - state.currentAge);
+
+      rows.push({ age, D, bequest, F, nominalNoInh, realNoInh, nominalWithInh, realWithInh });
+    }
+    return rows;
+  }
+
+  // ---------- Formatting ----------
+  const fmt0 = new Intl.NumberFormat("en-SG", { maximumFractionDigits: 0 });
+  function money(v) { return "S$" + fmt0.format(Math.round(v)); }
+  function moneySigned(v) {
+    const s = money(Math.abs(v));
+    return v < 0 ? "(" + s + ")" : s;
+  }
+  function pct(v) { return (v * 100).toFixed(2) + "%"; }
+
+  // ---------- UI: Assumptions ----------
+  const assumptionFields = [
+    { key: "currentAge", label: "Current age (you)", step: 1 },
+    { key: "retirementAge", label: "Target retirement age", step: 1 },
+    { key: "targetSpend", label: "Target annual household spend (S$)", step: 1000 },
+    { key: "inflation", label: "Inflation rate", isPct: true, step: 0.001 },
+    { key: "companyPayout", label: "Company payout at retirement (S$)", step: 5000 },
+    { key: "swr", label: "Safe withdrawal rate", isPct: true, step: 0.0025 },
+    { key: "legacyGrowth", label: "Legacy portfolio growth rate (post-retirement)", isPct: true, step: 0.0025 },
+    { key: "cpfLifePayoutPerPerson", label: "CPF LIFE payout / person / month (S$, today's terms)", step: 10 },
+    { key: "ersToday", label: "Enhanced Retirement Sum (ERS), today", step: 1000 },
+    { key: "ersGrowth", label: "Assumed annual ERS growth", isPct: true, step: 0.001 },
+    { key: "includeInheritance", label: "Include contingent inheritance?", isBool: true },
+    { key: "inheritanceValueToday", label: "Inherited property — value today (S$)", step: 10000 },
+    { key: "inheritanceAppreciation", label: "Inherited property appreciation", isPct: true, step: 0.001 },
+    { key: "inheritanceYield", label: "Inherited property rental yield (if let out)", isPct: true, step: 0.001 }
+  ];
+
+  function buildAssumptionsUI() {
+    const grid = document.getElementById("assumptionsGrid");
+    grid.innerHTML = "";
+    assumptionFields.forEach(f => {
+      const wrap = document.createElement("div");
+      wrap.className = "field-wrap";
+      const label = document.createElement("label");
+      label.className = "field"; label.textContent = f.label;
+      wrap.appendChild(label);
+      if (f.isBool) {
+        const input = document.createElement("input");
+        input.type = "checkbox"; input.checked = state[f.key];
+        input.addEventListener("change", () => { state[f.key] = input.checked; recompute(); });
+        wrap.appendChild(input);
+      } else {
+        const input = document.createElement("input");
+        input.type = "number";
+        input.step = f.step || 1;
+        input.value = f.isPct ? state[f.key] : state[f.key];
+        if (f.isPct) input.step = f.step;
+        input.value = f.isPct ? state[f.key] : state[f.key];
+        input.addEventListener("input", () => {
+          const v = parseFloat(input.value);
+          if (!isNaN(v)) { state[f.key] = v; recompute(); }
+        });
+        wrap.appendChild(input);
+      }
+      grid.appendChild(wrap);
+    });
+  }
+
+  // ---------- UI: Accounts tables ----------
+  function buildAccountRow(tbody, acct, isCpf) {
+    const tr = document.createElement("tr");
+    const tdName = document.createElement("td");
+    tdName.textContent = acct.name + (acct.note ? " " : "");
+    if (acct.note) { const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = acct.note; tdName.appendChild(document.createElement("br")); tdName.appendChild(tag); }
+    tr.appendChild(tdName);
+
+    function numCell(getVal, setVal, step) {
+      const td = document.createElement("td"); td.className = "num";
+      const input = document.createElement("input");
+      input.type = "number"; input.step = step; input.value = getVal();
+      input.addEventListener("input", () => { const v = parseFloat(input.value); if (!isNaN(v)) { setVal(v); recompute(); } });
+      td.appendChild(input);
+      return td;
+    }
+    tr.appendChild(numCell(() => acct.pv, v => acct.pv = v, 1000));
+    tr.appendChild(numCell(() => acct.pmt, v => acct.pmt = v, 50));
+    tr.appendChild(numCell(() => acct.rate, v => acct.rate = v, 0.005));
+    if (!isCpf) tr.appendChild(numCell(() => acct.stopYears, v => acct.stopYears = v, 1));
+    const tdProj = document.createElement("td"); tdProj.className = "num"; tdProj.dataset.projFor = acct.name;
+    tr.appendChild(tdProj);
+    tbody.appendChild(tr);
+    return tr;
+  }
+
+  function buildAccountsTables() {
+    const pDiv = document.getElementById("acctTable-portfolio");
+    const cDiv = document.getElementById("acctTable-cpf");
+    const lDiv = document.getElementById("acctTable-leveraged");
+
+    const pTable = document.createElement("table");
+    pTable.innerHTML = "<thead><tr><th>Product</th><th class='num'>Current value</th><th class='num'>Monthly contrib.</th><th class='num'>Growth rate</th><th class='num'>Stops after (yrs)</th><th class='num'>At retirement</th></tr></thead>";
+    const pBody = document.createElement("tbody"); pTable.appendChild(pBody);
+    portfolioAccounts.forEach(a => buildAccountRow(pBody, a, false));
+    endowments.forEach(e => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + e.name + "</td><td class='num'>—</td><td class='num'>—</td><td class='num'>—</td><td class='num'>fixed maturity " + e.maturityYear + "</td>";
+      const tdProj = document.createElement("td"); tdProj.className = "num"; tdProj.dataset.projForEndow = e.name;
+      tr.appendChild(tdProj);
+      pBody.appendChild(tr);
+    });
+    const totalRow = document.createElement("tr"); totalRow.className = "total";
+    totalRow.innerHTML = "<td>TOTAL — Investment Portfolio</td><td class='num'></td><td class='num'></td><td class='num'></td><td class='num'></td><td class='num' id='portfolioTotalCell'></td>";
+    pBody.appendChild(totalRow);
+    pDiv.innerHTML = ""; pDiv.appendChild(pTable);
+
+    const cTable = document.createElement("table");
+    cTable.innerHTML = "<thead><tr><th>CPF account</th><th class='num'>Balance today</th><th class='num'>Monthly contrib.</th><th class='num'>Growth rate</th><th class='num'>At retirement</th></tr></thead>";
+    const cBody = document.createElement("tbody"); cTable.appendChild(cBody);
+    cpfAccounts.forEach(a => buildAccountRow(cBody, a, true));
+    const cTotalRow = document.createElement("tr"); cTotalRow.className = "total";
+    cTotalRow.innerHTML = "<td>TOTAL — OA + SA (MediSave excluded)</td><td class='num'></td><td class='num'></td><td class='num'></td><td class='num' id='cpfTotalCell'></td>";
+    cBody.appendChild(cTotalRow);
+    cDiv.innerHTML = ""; cDiv.appendChild(cTable);
+
+    const lTable = document.createElement("table");
+    lTable.innerHTML = "<thead><tr><th>Account</th><th class='num'>Asset value</th><th class='num'>Loan balance</th><th class='num'>Monthly income</th><th class='num'>Implied rate</th><th class='num'>Net equity at retirement</th></tr></thead>";
+    const lBody = document.createElement("tbody"); lTable.appendChild(lBody);
+    [leveraged.scb, leveraged.ocbc].forEach(acc => {
+      const tr = document.createElement("tr");
+      const tdName = document.createElement("td"); tdName.textContent = acc.name; tr.appendChild(tdName);
+      function numCell(getVal, setVal, step) {
+        const td = document.createElement("td"); td.className = "num";
+        const input = document.createElement("input"); input.type = "number"; input.step = step; input.value = getVal();
+        input.addEventListener("input", () => { const v = parseFloat(input.value); if (!isNaN(v)) { setVal(v); recompute(); } });
+        td.appendChild(input); return td;
+      }
+      tr.appendChild(numCell(() => acc.assetValue, v => acc.assetValue = v, 5000));
+      tr.appendChild(numCell(() => acc.loan, v => acc.loan = v, 5000));
+      tr.appendChild(numCell(() => acc.monthlyIncome, v => acc.monthlyIncome = v, 50));
+      tr.appendChild(numCell(() => acc.rate, v => acc.rate = v, 0.001));
+      const tdProj = document.createElement("td"); tdProj.className = "num"; tdProj.dataset.levProj = acc.name;
+      tr.appendChild(tdProj);
+      lBody.appendChild(tr);
+    });
+    lDiv.innerHTML = ""; lDiv.appendChild(lTable);
+
+    document.querySelectorAll(".tab-btn[data-acct-tab]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn[data-acct-tab]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        ["portfolio", "cpf", "leveraged"].forEach(t => {
+          document.getElementById("acctTable-" + t).style.display = (t === btn.dataset.acctTab) ? "" : "none";
+        });
+      });
+    });
+  }
+
+  function refreshAccountsTables() {
+    const R = state.retirementAge;
+    portfolioAccounts.forEach(a => {
+      const cell = document.querySelector('[data-proj-for="' + CSS.escape(a.name) + '"]');
+      if (cell) cell.textContent = money(accountValueAtAge(a, R));
+    });
+    endowments.forEach(e => {
+      const cell = document.querySelector('[data-proj-for-endow="' + CSS.escape(e.name) + '"]');
+      if (cell) cell.textContent = money(endowmentValueAtAge(e, R));
+    });
+    const pTotal = document.getElementById("portfolioTotalCell");
+    if (pTotal) pTotal.textContent = money(portfolioTotalAtAge(R));
+    cpfAccounts.forEach(a => {
+      const cell = document.querySelector('[data-proj-for="' + CSS.escape(a.name) + '"]');
+      if (cell) cell.textContent = money(accountValueAtAge(a, R));
+    });
+    const cTotal = document.getElementById("cpfTotalCell");
+    if (cTotal) cTotal.textContent = money(cpfSumAtAge(R, false));
+    const scbCell = document.querySelector('[data-lev-proj="' + CSS.escape(leveraged.scb.name) + '"]');
+    if (scbCell) scbCell.textContent = money(scbEquityAtAge(R));
+    const ocbcCell = document.querySelector('[data-lev-proj="' + CSS.escape(leveraged.ocbc.name) + '"]');
+    if (ocbcCell) ocbcCell.textContent = money(ocbcEquityAtAge(R)) + " (+" + money(ocbcIncomeAnnual()) + "/yr income)";
+  }
+
+  // ---------- UI: Property ----------
+  function buildPropertyUI() {
+    const grid = document.getElementById("propertyGrid");
+    const fields = [
+      { key: "propertyValueToday", label: "Current property value (S$)", step: 10000 },
+      { key: "propertyAppreciation", label: "Property appreciation / year", isPct: true, step: 0.001 },
+      { key: "mortgagePrincipal", label: "Outstanding mortgage today (S$)", step: 10000 },
+      { key: "mortgageRate", label: "Mortgage interest rate", isPct: true, step: 0.001 },
+      { key: "mortgageTermYears", label: "Mortgage amortization (years)", step: 1 },
+      { key: "rentalIncomeMonthly", label: "Monthly rental income (S$)", step: 100 }
+    ];
+    grid.innerHTML = "";
+    fields.forEach(f => {
+      const wrap = document.createElement("div"); wrap.className = "field-wrap";
+      const label = document.createElement("label"); label.className = "field"; label.textContent = f.label; wrap.appendChild(label);
+      const input = document.createElement("input"); input.type = "number"; input.step = f.step; input.value = state[f.key];
+      input.addEventListener("input", () => { const v = parseFloat(input.value); if (!isNaN(v)) { state[f.key] = v; recompute(); } });
+      wrap.appendChild(input);
+      grid.appendChild(wrap);
+    });
+  }
+
+  // ---------- UI: Scenario E inputs ----------
+  function buildScenarioEUI() {
+    const grid = document.getElementById("scenarioEGrid");
+    grid.innerHTML = "";
+    const fields = [
+      { key: "saleMarketValueOverride", label: "Assumed sale price at retirement (S$, blank = use property model above)", step: 10000, allowNull: true },
+      { key: "saleSellingCostPct", label: "Selling costs (agent + legal, % of sale price)", isPct: true, step: 0.0025 },
+      { key: "newHousePrice", label: "New home purchase price, mortgage-free (S$)", step: 10000 }
+    ];
+    fields.forEach(f => {
+      const wrap = document.createElement("div"); wrap.className = "field-wrap";
+      const label = document.createElement("label"); label.className = "field"; label.textContent = f.label; wrap.appendChild(label);
+      const input = document.createElement("input"); input.type = "number"; input.step = f.step;
+      input.value = state[f.key] == null ? "" : state[f.key];
+      input.placeholder = f.allowNull ? "auto" : "";
+      input.addEventListener("input", () => {
+        if (input.value === "" && f.allowNull) { state[f.key] = null; recompute(); return; }
+        const v = parseFloat(input.value);
+        if (!isNaN(v)) { state[f.key] = v; recompute(); }
+      });
+      wrap.appendChild(input);
+      grid.appendChild(wrap);
+    });
+    const wrap = document.createElement("div"); wrap.className = "field-wrap";
+    const label = document.createElement("label"); label.className = "field"; label.textContent = "Retirement age (shared with rest of page)";
+    wrap.appendChild(label);
+    const input = document.createElement("input"); input.type = "number"; input.step = 1; input.value = state.retirementAge;
+    input.addEventListener("input", () => { const v = parseFloat(input.value); if (!isNaN(v)) { state.retirementAge = v; recompute(); } });
+    wrap.appendChild(input);
+    grid.appendChild(wrap);
+  }
+
+  // ---------- Charts (hand-rolled SVG — no external dependencies) ----------
+  const SVGNS = "http://www.w3.org/2000/svg";
+  function cssVar(name) { return getComputedStyle(document.querySelector(".viz-root")).getPropertyValue(name).trim(); }
+  function el(tag, attrs) {
+    const e = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function niceMax(v) {
+    if (v <= 0) return 1;
+    const mag = Math.pow(10, Math.floor(Math.log10(v)));
+    const norm = v / mag;
+    let step;
+    if (norm <= 1) step = 1; else if (norm <= 2) step = 2; else if (norm <= 5) step = 5; else step = 10;
+    return step * mag;
+  }
+  function ensureTooltip(container) {
+    let box = container.parentElement.querySelector(".chart-tooltip");
+    if (!box) {
+      box = document.createElement("div");
+      box.className = "chart-tooltip";
+      container.parentElement.style.position = "relative";
+      container.parentElement.appendChild(box);
+    }
+    return box;
+  }
+  function ensureLegend(container, items) {
+    let leg = container.parentElement.querySelector(".chart-legend");
+    if (leg) leg.remove();
+    if (!items || items.length < 2) return;
+    leg = document.createElement("div");
+    leg.className = "chart-legend";
+    items.forEach(it => {
+      const item = document.createElement("div"); item.className = "item";
+      item.innerHTML = "<span class='sw' style='background:" + it.color + "'></span>" + it.name;
+      leg.appendChild(item);
+    });
+    container.parentElement.appendChild(leg);
+  }
+
+  // series: [{name, color, data:[numbers]}]; xLabels: array same length
+  function renderLineChart(containerId, series, xLabels, opts) {
+    opts = opts || {};
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    const w = Math.max(container.clientWidth, 320) || 600;
+    const h = Math.max(container.clientHeight, 220) || 300;
+    const padL = 64, padR = 14, padT = 14, padB = 28;
+    const plotW = w - padL - padR, plotH = h - padT - padB;
+
+    const allVals = series.flatMap(s => s.data).filter(v => isFinite(v));
+    const rawMax = Math.max(0, ...allVals);
+    const yMax = niceMax(rawMax * 1.08 || 1);
+    const n = xLabels.length;
+
+    const svg = el("svg", { viewBox: "0 0 " + w + " " + h, preserveAspectRatio: "none" });
+    const gridColor = cssVar("--gridline"), mutedColor = cssVar("--text-muted"), baseColor = cssVar("--baseline");
+
+    function xPos(i) { return n <= 1 ? padL : padL + (i / (n - 1)) * plotW; }
+    function yPos(v) { return padT + plotH - (v / yMax) * plotH; }
+
+    // gridlines + y labels
+    const steps = 4;
+    for (let i = 0; i <= steps; i++) {
+      const v = (yMax / steps) * i;
+      const y = yPos(v);
+      svg.appendChild(el("line", { x1: padL, x2: w - padR, y1: y, y2: y, stroke: gridColor, "stroke-width": 1 }));
+      const t = el("text", { x: padL - 8, y: y + 4, fill: mutedColor, "font-size": 11, "text-anchor": "end" });
+      t.textContent = "S$" + fmt0.format(Math.round(v));
+      svg.appendChild(t);
+    }
+    // baseline
+    svg.appendChild(el("line", { x1: padL, x2: w - padR, y1: padT + plotH, y2: padT + plotH, stroke: baseColor, "stroke-width": 1 }));
+
+    // x labels (sparse)
+    const maxTicks = Math.max(2, Math.floor(plotW / 56));
+    const tickEvery = Math.max(1, Math.ceil(n / maxTicks));
+    for (let i = 0; i < n; i += tickEvery) {
+      const t = el("text", { x: xPos(i), y: h - 8, fill: mutedColor, "font-size": 11, "text-anchor": "middle" });
+      t.textContent = xLabels[i];
+      svg.appendChild(t);
+    }
+
+    // area fill (first series only, if opts.fill)
+    if (opts.fill && series[0]) {
+      const s = series[0];
+      let d = "M " + xPos(0) + " " + yPos(s.data[0] || 0);
+      for (let i = 1; i < n; i++) d += " L " + xPos(i) + " " + yPos(s.data[i] || 0);
+      d += " L " + xPos(n - 1) + " " + (padT + plotH) + " L " + xPos(0) + " " + (padT + plotH) + " Z";
+      svg.appendChild(el("path", { d: d, fill: s.color, "fill-opacity": 0.14, stroke: "none" }));
+    }
+
+    // lines
+    series.forEach(s => {
+      let d = "";
+      for (let i = 0; i < n; i++) {
+        const v = s.data[i];
+        if (v == null || !isFinite(v)) continue;
+        d += (d === "" ? "M " : " L ") + xPos(i) + " " + yPos(v);
+      }
+      svg.appendChild(el("path", { d: d, fill: "none", stroke: s.color, "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round" }));
+    });
+
+    container.appendChild(svg);
+    ensureLegend(container, series.length > 1 ? series.map(s => ({ name: s.name, color: s.color })) : null);
+
+    // hover interaction
+    const tooltip = ensureTooltip(container);
+    const hoverLayer = el("rect", { x: padL, y: padT, width: Math.max(1, plotW), height: Math.max(1, plotH), fill: "transparent" });
+    const crosshair = el("line", { x1: padL, x2: padL, y1: padT, y2: padT + plotH, stroke: mutedColor, "stroke-width": 1, "stroke-dasharray": "3,3", opacity: 0 });
+    svg.appendChild(crosshair);
+    const dots = series.map(s => { const c = el("circle", { r: 3.5, fill: s.color, opacity: 0 }); svg.appendChild(c); return c; });
+    svg.appendChild(hoverLayer);
+
+    function onMove(evt) {
+      const rect = container.getBoundingClientRect();
+      const px = (evt.clientX - rect.left) * (w / rect.width);
+      let idx = Math.round(((px - padL) / plotW) * (n - 1));
+      idx = Math.max(0, Math.min(n - 1, idx));
+      const cx = xPos(idx);
+      crosshair.setAttribute("x1", cx); crosshair.setAttribute("x2", cx); crosshair.setAttribute("opacity", 1);
+      let rows = "";
+      series.forEach((s, si) => {
+        const v = s.data[idx];
+        dots[si].setAttribute("cx", cx);
+        dots[si].setAttribute("cy", yPos(v || 0));
+        dots[si].setAttribute("opacity", v == null ? 0 : 1);
+        rows += "<div class='tt-row'><span class='tt-swatch' style='background:" + s.color + "'></span>" + s.name + ": <b>&nbsp;S$" + fmt0.format(Math.round(v || 0)) + "</b></div>";
+      });
+      tooltip.innerHTML = "<div style='margin-bottom:3px;color:" + mutedColor + "'>" + xLabels[idx] + "</div>" + rows;
+      tooltip.style.display = "block";
+      const left = Math.min(rect.width - 160, Math.max(0, (cx / w) * rect.width + 10));
+      tooltip.style.left = left + "px";
+      tooltip.style.top = "6px";
+    }
+    function onLeave() {
+      crosshair.setAttribute("opacity", 0);
+      dots.forEach(d => d.setAttribute("opacity", 0));
+      tooltip.style.display = "none";
+    }
+    hoverLayer.addEventListener("mousemove", onMove);
+    hoverLayer.addEventListener("mouseleave", onLeave);
+  }
+
+  // categories: array of strings; values: array of numbers; target: number|null
+  function renderBarChart(containerId, categories, values, target, color) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    const w = Math.max(container.clientWidth, 320) || 600;
+    const h = Math.max(container.clientHeight, 220) || 300;
+    const padL = 70, padR = 14, padT = 14, padB = 34;
+    const plotW = w - padL - padR, plotH = h - padT - padB;
+    const gridColor = cssVar("--gridline"), mutedColor = cssVar("--text-muted"), baseColor = cssVar("--baseline");
+
+    const rawMax = Math.max(0, ...values, target || 0);
+    const yMax = niceMax(rawMax * 1.15 || 1);
+    function yPos(v) { return padT + plotH - (v / yMax) * plotH; }
+
+    const svg = el("svg", { viewBox: "0 0 " + w + " " + h, preserveAspectRatio: "none" });
+    const steps = 4;
+    for (let i = 0; i <= steps; i++) {
+      const v = (yMax / steps) * i;
+      const y = yPos(v);
+      svg.appendChild(el("line", { x1: padL, x2: w - padR, y1: y, y2: y, stroke: gridColor, "stroke-width": 1 }));
+      const t = el("text", { x: padL - 8, y: y + 4, fill: mutedColor, "font-size": 11, "text-anchor": "end" });
+      t.textContent = "S$" + fmt0.format(Math.round(v));
+      svg.appendChild(t);
+    }
+    svg.appendChild(el("line", { x1: padL, x2: w - padR, y1: padT + plotH, y2: padT + plotH, stroke: baseColor, "stroke-width": 1 }));
+
+    const n = categories.length;
+    const slot = plotW / n;
+    const barW = Math.min(70, slot * 0.5);
+    const tooltip = ensureTooltip(container);
+
+    values.forEach((v, i) => {
+      const cx = padL + slot * (i + 0.5);
+      const bx = cx - barW / 2;
+      const by = yPos(v);
+      const bh = padT + plotH - by;
+      const r = 4;
+      const d = "M " + bx + " " + (by + r) +
+        " Q " + bx + " " + by + " " + (bx + r) + " " + by +
+        " L " + (bx + barW - r) + " " + by +
+        " Q " + (bx + barW) + " " + by + " " + (bx + barW) + " " + (by + r) +
+        " L " + (bx + barW) + " " + (by + bh) +
+        " L " + bx + " " + (by + bh) + " Z";
+      const bar = el("path", { d: d, fill: color });
+      svg.appendChild(bar);
+      const label = el("text", { x: cx, y: by - 8, fill: cssVar("--text-primary"), "font-size": 12.5, "text-anchor": "middle", "font-weight": "600" });
+      label.textContent = "S$" + fmt0.format(Math.round(v));
+      svg.appendChild(label);
+      const catText = el("text", { x: cx, y: h - 8, fill: mutedColor, "font-size": 11.5, "text-anchor": "middle" });
+      catText.textContent = categories[i];
+      svg.appendChild(catText);
+
+      const hoverRect = el("rect", { x: cx - slot / 2, y: padT, width: slot, height: plotH, fill: "transparent" });
+      hoverRect.addEventListener("mousemove", (evt) => {
+        const rect = container.getBoundingClientRect();
+        tooltip.innerHTML = "<div class='tt-row'><span class='tt-swatch' style='background:" + color + "'></span>" + categories[i] + ": <b>&nbsp;S$" + fmt0.format(Math.round(v)) + "</b></div>" +
+          (target != null ? "<div class='tt-row' style='color:" + mutedColor + "'>target: S$" + fmt0.format(Math.round(target)) + "</div>" : "");
+        tooltip.style.display = "block";
+        tooltip.style.left = Math.min(rect.width - 160, Math.max(0, cx - padL)) + "px";
+        tooltip.style.top = "6px";
+      });
+      hoverRect.addEventListener("mouseleave", () => { tooltip.style.display = "none"; });
+      svg.appendChild(hoverRect);
+    });
+
+    if (target != null) {
+      const ty = yPos(target);
+      svg.appendChild(el("line", { x1: padL, x2: w - padR, y1: ty, y2: ty, stroke: mutedColor, "stroke-width": 2, "stroke-dasharray": "6,4" }));
+      const t = el("text", { x: w - padR, y: ty - 6, fill: mutedColor, "font-size": 11, "text-anchor": "end" });
+      t.textContent = "target";
+      svg.appendChild(t);
+    }
+
+    container.appendChild(svg);
+    ensureLegend(container, target != null ? [{ name: "Net annual passive income", color: color }, { name: "Target spend", color: mutedColor }] : null);
+  }
+
+  function buildCharts() { /* no-op: SVG charts are rendered fresh on every recompute() */ }
+
+  // ---------- Main recompute ----------
+  function recompute() {
+    const R = state.retirementAge;
+    const s = scenarios(R);
+
+    document.getElementById("targetSpendEcho").textContent = fmt0.format(state.targetSpend);
+
+    // Accumulation chart
+    const ages = [];
+    const netWorths = [];
+    const startAge = state.currentAge, endAge = Math.max(R + 2, state.currentAge + 1);
+    for (let age = startAge; age <= endAge; age++) {
+      ages.push(age);
+      const nw = (portfolioTotalAtAge(age)) + cpfSumAtAge(age, false) + cpfSumAtAge(age, true) +
+                 scbEquityAtAge(age) + ocbcEquityAtAge(age) + propertyEquityAtAge(age);
+      netWorths.push(Math.round(nw));
+    }
+    renderLineChart("accumChart",
+      [{ name: "Household net worth", color: cssVar("--series-1"), data: netWorths }],
+      ages.map(a => "Age " + a), { fill: true });
+
+    // Mortgage chart
+    const mAges = [], mVal = [], mBal = [];
+    for (let age = state.currentAge; age <= endAge; age++) {
+      mAges.push(age); mVal.push(Math.round(propertyValueAtAge(age))); mBal.push(Math.round(mortgageBalanceAtAge(age)));
+    }
+    renderLineChart("mortgageChart", [
+      { name: "Property value", color: cssVar("--series-3"), data: mVal },
+      { name: "Mortgage balance", color: cssVar("--series-2"), data: mBal }
+    ], mAges.map(a => "Age " + a), {});
+    document.getElementById("propSummary").textContent =
+      "Property value " + money(s.propValR) + ", mortgage balance " + money(s.mortgageBalR) + ", equity " + money(s.propValR - s.mortgageBalR) + " at age " + R + ".";
+
+    // Property grid values already editable; refresh accounts tables
+    refreshAccountsTables();
+
+    // Scenario E breakdown
+    const eGrid = document.getElementById("scenarioEGrid");
+    const eBody = document.getElementById("scenarioEBreakdown");
+    eBody.innerHTML = "";
+    const rows = [
+      ["Sale price at retirement (age " + R + ")", money(s.saleValue)],
+      ["Less: mortgage payoff", moneySigned(-s.mortgageBalR)],
+      ["Less: selling costs (" + pct(state.saleSellingCostPct) + ")", moneySigned(-s.sellingCosts)],
+      ["Net sale proceeds", money(s.netProceeds)],
+      ["Less: new mortgage-free home", moneySigned(-state.newHousePrice)],
+      ["Remainder invested at SWR (" + pct(state.swr) + ")", money(s.remainderAfterHouse) + " → " + money(s.invIncomeFromRemainder) + "/yr"],
+    ];
+    rows.forEach(r => { const tr = document.createElement("tr"); tr.innerHTML = "<td>" + r[0] + "</td><td class='num'>" + r[1] + "</td>"; eBody.appendChild(tr); });
+    const warnDiv = document.getElementById("scenarioEWarn");
+    warnDiv.innerHTML = "";
+    if (s.shortfall > 0) {
+      const w = document.createElement("div"); w.className = "warn-box";
+      w.textContent = "Net sale proceeds fall short of the new home price by " + money(s.shortfall) + " — you'd need to top this up from other savings, which isn't automatically subtracted elsewhere on this page.";
+      warnDiv.appendChild(w);
+    }
+
+    // Scenario comparison
+    renderBarChart("scenarioChart",
+      ["A: keep property", "B: pay off mortgage", "E: sell, buy mortgage-free"],
+      [Math.round(s.A), Math.round(s.B), Math.round(s.E)],
+      state.targetSpend, cssVar("--series-1"));
+
+    const scenTable = document.getElementById("scenarioTable");
+    scenTable.innerHTML = "";
+    const scenRows = [
+      ["A — keep property, subsidize mortgage from portfolio", s.A],
+      ["B — pay off mortgage with lump sum at retirement", s.B],
+      ["C — B + let out inherited property (from age 55, contingent)", s.C],
+      ["D — B + sell/downsize/invest inherited property (from age 55, contingent)", s.D],
+      ["E — sell The Line, buy mortgage-free home", s.E]
+    ];
+    scenRows.forEach(([label, val]) => {
+      const surplus = val - state.targetSpend;
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + label + "</td><td class='num'>" + money(val) + "</td><td class='num'><span class='delta " + (surplus >= 0 ? "good" : "bad") + "'>" + moneySigned(surplus) + "</span></td>";
+      scenTable.appendChild(tr);
+    });
+
+    // Net worth tiles
+    const nwB = netWorthAtRetirement(R, "B");
+    const nwE = netWorthAtRetirement(R, "E");
+    const tiles = document.getElementById("netWorthTiles");
+    tiles.innerHTML = "";
+    [
+      ["Total net worth at retirement — keep/pay off property (A/B)", nwB],
+      ["Total net worth at retirement — sell &amp; buy mortgage-free (E)", nwE],
+      ["Difference (selling costs friction)", nwE - nwB],
+      ["Liquid, penalty-free pool (ex-SRS/CPF/OCBC/property)", s.pool]
+    ].forEach(([label, val]) => {
+      const tile = document.createElement("div"); tile.className = "tile";
+      tile.innerHTML = "<div class='label'>" + label + "</div><div class='value'>" + money(val) + "</div>";
+      tiles.appendChild(tile);
+    });
+
+    // Legacy projection
+    const baseScenario = document.getElementById("legacyBaseScenario").value;
+    const valueBasis = document.getElementById("legacyValueBasis").value;
+    const showInh = document.getElementById("legacyShowInheritance").checked;
+    const legacyRows = legacyProjection(baseScenario, state.includeInheritance);
+    const legacySeries = [{
+      name: "No inheritance", color: cssVar("--series-1"),
+      data: legacyRows.map(r => Math.round(valueBasis === "real" ? r.realNoInh : r.nominalNoInh))
+    }];
+    if (showInh) {
+      legacySeries.push({
+        name: "With inheritance", color: cssVar("--series-2"),
+        data: legacyRows.map(r => Math.round(valueBasis === "real" ? r.realWithInh : r.nominalWithInh))
+      });
+    }
+    renderLineChart("legacyChart", legacySeries, legacyRows.map(r => "Age " + r.age), {});
+
+    const legacyTableBody = document.getElementById("legacyTable");
+    legacyTableBody.innerHTML = "";
+    [R, 55, 65, 75, 85].filter((v, i, arr) => v >= R && arr.indexOf(v) === i).sort((a, b) => a - b).forEach(age => {
+      const row = legacyRows.find(r => r.age === age);
+      if (!row) return;
+      const noInh = valueBasis === "real" ? row.realNoInh : row.nominalNoInh;
+      const withInh = valueBasis === "real" ? row.realWithInh : row.nominalWithInh;
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + age + "</td><td class='num'>" + money(noInh) + "</td><td class='num'>" + (showInh ? money(withInh) : "—") + "</td>";
+      legacyTableBody.appendChild(tr);
+    });
+
+    // Compare two ages
+    const ageA = parseFloat(document.getElementById("compareAgeA").value) || R;
+    const ageB = parseFloat(document.getElementById("compareAgeB").value) || R + 2;
+    document.getElementById("compareHeadA").textContent = "Age " + ageA;
+    document.getElementById("compareHeadB").textContent = "Age " + ageB;
+    const sA = scenarios(ageA), sB = scenarios(ageB);
+    const compareRows = [
+      ["Scenario A income", money(sA.A), money(sB.A)],
+      ["Scenario B income", money(sA.B), money(sB.B)],
+      ["Scenario E income", money(sA.E), money(sB.E)],
+      ["Liquid accessible pool", money(sA.pool), money(sB.pool)],
+      ["Outstanding mortgage", money(sA.mortgageBalR), money(sB.mortgageBalR)],
+      ["Total net worth (B)", money(netWorthAtRetirement(ageA, "B")), money(netWorthAtRetirement(ageB, "B"))]
+    ];
+    const compareTable = document.getElementById("compareTable");
+    compareTable.innerHTML = "";
+    compareRows.forEach(([label, a, b]) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + label + "</td><td class='num'>" + a + "</td><td class='num'>" + b + "</td>";
+      compareTable.appendChild(tr);
+    });
+  }
+
+  // ---------- Theme toggle ----------
+  function initTheme() {
+    const btn = document.getElementById("themeToggle");
+    btn.addEventListener("click", () => {
+      const root = document.documentElement;
+      const current = root.getAttribute("data-theme");
+      if (current === "dark") root.setAttribute("data-theme", "light");
+      else root.setAttribute("data-theme", "dark");
+      setTimeout(() => { rebuildChartColors(); }, 30);
+    });
+  }
+  function rebuildChartColors() {
+    recompute();
+  }
+
+  // ---------- Init ----------
+  buildAssumptionsUI();
+  buildAccountsTables();
+  buildPropertyUI();
+  buildScenarioEUI();
+  buildCharts();
+  initTheme();
+  document.getElementById("legacyBaseScenario").addEventListener("change", recompute);
+  document.getElementById("legacyValueBasis").addEventListener("change", recompute);
+  document.getElementById("legacyShowInheritance").addEventListener("change", recompute);
+  document.getElementById("compareAgeA").addEventListener("input", recompute);
+  document.getElementById("compareAgeB").addEventListener("input", recompute);
+  recompute();
+
+})();
+</script>
+</body>
+</html>
